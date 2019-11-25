@@ -1,0 +1,19 @@
+#logging:
+#  pattern:
+#    console: "%d - %msg%n"
+#  file: H:\var\log\tomcat\sell.log
+#  level:
+#    com.dgut.sell.LoggerTest: debug
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://10.62.112.102/sell?characterEncoding=utf-8&useSSL=false
+  jpa:
+    show-sql: true
+#  jackson:
+#    default-property-inclusion: non_null
+server:
+  context-path: /sell
