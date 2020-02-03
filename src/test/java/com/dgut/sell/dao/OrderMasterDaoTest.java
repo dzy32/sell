@@ -21,24 +21,26 @@ public class OrderMasterDaoTest {
     @Autowired
     private OrderMasterDao orderMasterDao;
 
-    private final String openId ="12345";
+    private final String openId = "12345";
+
     @Test
-    public void save(){
-        OrderMaster orderMaster=new OrderMaster();
+    public void save() {
+        OrderMaster orderMaster = new OrderMaster();
         orderMaster.setOrderId("123456");
         orderMaster.setBuyerName("ys");
         orderMaster.setBuyerAddress("dgut");
         orderMaster.setBuyerOpenid(openId);
         orderMaster.setBuyerPhone("12345678901");
         orderMaster.setOrderAmount(new BigDecimal(67.7));
-        OrderMaster result= orderMasterDao.save(orderMaster);
+        OrderMaster result = orderMasterDao.save(orderMaster);
         Assert.assertNotNull(result);
     }
+
     @Test
     public void findByBuyerOpenid() {
-        PageRequest pageRequest=new PageRequest(0,3);
-        Page<OrderMaster> orderMasterPage=orderMasterDao.findByBuyerOpenid(openId,pageRequest);
-        Assert.assertNotEquals(0,orderMasterPage.getTotalElements());
+        PageRequest pageRequest = new PageRequest(0, 3);
+        Page<OrderMaster> orderMasterPage = orderMasterDao.findByBuyerOpenid(openId, pageRequest);
+        Assert.assertNotEquals(0, orderMasterPage.getTotalElements());
         System.out.println(orderMasterPage.getTotalElements());
 
     }

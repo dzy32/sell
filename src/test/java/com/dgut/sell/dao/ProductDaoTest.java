@@ -18,11 +18,11 @@ import static org.junit.Assert.*;
 public class ProductDaoTest {
 
     @Autowired
-    private  ProductDao productDao;
+    private ProductDao productDao;
 
     @Test
-    public void save(){
-        ProductInfo productInfo=new ProductInfo();
+    public void save() {
+        ProductInfo productInfo = new ProductInfo();
         productInfo.setProductName("鸡腿");
         productInfo.setProductId("66666");
         productInfo.setCategoryType(3);
@@ -36,10 +36,11 @@ public class ProductDaoTest {
 
 
     }
+
     @Test
     public void findByProductStatus() {
-        List<ProductInfo> product= productDao.findByProductStatus(0);
-        Assert.assertNotEquals(0,product.size());
+        List<ProductInfo> product = productDao.findByProductStatus(0);
+        Assert.assertNotEquals(0, product.size());
 
     }
 }

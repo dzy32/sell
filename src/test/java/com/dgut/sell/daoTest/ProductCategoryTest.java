@@ -21,28 +21,30 @@ public class ProductCategoryTest {
     private ProductCategoryDao productCategoryDao;
 
     @Test
-    public void findOneTest(){
-        ProductCategory productCategory =productCategoryDao.findOne(1);
+    public void findOneTest() {
+        ProductCategory productCategory = productCategoryDao.findOne(1);
         System.out.println(productCategory.toString());
     }
 
     @Test
-    public void setProductCategoryUpdateTest(){
-        ProductCategory productCategory=productCategoryDao.findOne(1);
+    public void setProductCategoryUpdateTest() {
+        ProductCategory productCategory = productCategoryDao.findOne(1);
         productCategory.setCategoryName("女生最爱");
         productCategoryDao.save(productCategory);
     }
+
     @Test
-    public void ProductCategorySaveTest(){
-        ProductCategory productCategory = new ProductCategory("热销",1);
+    public void ProductCategorySaveTest() {
+        ProductCategory productCategory = new ProductCategory("热销", 1);
         productCategoryDao.save(productCategory);
 
     }
+
     @Test
-    public void ProductCategoryFindByTypeTest(){
-        List<Integer> type= Arrays.asList(1,3);
+    public void ProductCategoryFindByTypeTest() {
+        List<Integer> type = Arrays.asList(1, 3);
         List<ProductCategory> productCategories = productCategoryDao.findByCategoryTypeIn(type);
-        Assert.assertNotEquals(0,productCategories.size());
+        Assert.assertNotEquals(0, productCategories.size());
 
     }
 }

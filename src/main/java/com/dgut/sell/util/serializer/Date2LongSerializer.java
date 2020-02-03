@@ -9,9 +9,9 @@ import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.util.Date;
 
-public class Date2LongSerializer  extends JsonSerializer<Date> {
+public class Date2LongSerializer extends JsonSerializer<Date> {
     @Override
     public void serialize(Date date, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException, JsonProcessingException {
-        jsonGenerator.writeNumber(date.getTime()/1000);
+        jsonGenerator.writeNumber(date.getTime() / 1000);
     }
 }

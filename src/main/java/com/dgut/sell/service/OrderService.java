@@ -8,16 +8,23 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface OrderService {
-//   创建订单
+    //   创建订单
     OrderDTO create(OrderDTO orderDTO);
-//    查找一个订单
+
+    //    查找一个订单
     OrderDTO findOne(String orderId);
-//    查找列表订单
+
+    //    查找列表订单
     Page<OrderDTO> findAll(String buyerOpenId, Pageable pageable);
-//    完结订单单
+
+    //    完结订单单
     OrderDTO finshed(OrderDTO orderDTO);
-//    取消订单
+
+    //    取消订单
     OrderDTO cancel(OrderDTO orderDTO);
-//支付订单
+
+    //支付订单
     OrderDTO paid(OrderDTO orderDTO);
+
+    Page<OrderDTO> findAll(Pageable pageable);
 }

@@ -13,10 +13,12 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Autowired
     private ProductCategoryDao productCategoryDao;
+
     @Override
     public ProductCategory findOne(Integer id) {
         return productCategoryDao.findOne(id);
     }
+
     @Override
     public List<ProductCategory> findAll() {
         return productCategoryDao.findAll();

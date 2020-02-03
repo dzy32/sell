@@ -21,30 +21,31 @@ import static org.junit.Assert.*;
 public class ProductServiceImplTest {
 
     @Autowired
-    private  ProductServiceImpl productService;
+    private ProductServiceImpl productService;
+
     @Test
     public void findOne() {
-        ProductInfo productInfo=productService.findOne("66666");
-        Assert.assertEquals("66666",productInfo.getProductId());
+        ProductInfo productInfo = productService.findOne("66666");
+        Assert.assertEquals("66666", productInfo.getProductId());
 
     }
 
     @Test
     public void findUpAll() {
-        List<ProductInfo> productInfoList=productService.findUpAll();
-        Assert.assertNotEquals(0,productInfoList.size());
+        List<ProductInfo> productInfoList = productService.findUpAll();
+        Assert.assertNotEquals(0, productInfoList.size());
     }
 
     @Test
     public void findAll() {
-        PageRequest pageRequest=new PageRequest(0,2);
-        Page<ProductInfo> productInfos=productService.findAll(pageRequest);
-        Assert.assertNotEquals(0,productInfos.getTotalElements());
+        PageRequest pageRequest = new PageRequest(0, 2);
+        Page<ProductInfo> productInfos = productService.findAll(pageRequest);
+        Assert.assertNotEquals(0, productInfos.getTotalElements());
     }
 
     @Test
     public void save() {
-        ProductInfo productInfo=new ProductInfo();
+        ProductInfo productInfo = new ProductInfo();
         productInfo.setProductName("鸭腿");
         productInfo.setProductId("12345");
         productInfo.setCategoryType(3);

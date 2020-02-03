@@ -27,70 +27,79 @@ import static org.junit.Assert.*;
 public class OrderServiceImplTest {
 
     @Autowired
-    private  OrderServiceImpl orderService;
+    private OrderServiceImpl orderService;
 
-    private  final  String BUYER_ID="12345";
+    private final String BUYER_ID = "12345";
 
-    private  final  String ORDER_ID="1574004592668532389";
+    private final String ORDER_ID = "1574004592668532389";
 
     @Test
     public void create() {
-        OrderDTO orderDTO =new OrderDTO();
+        OrderDTO orderDTO = new OrderDTO();
         orderDTO.setBuyerAddress("dgut");
         orderDTO.setBuyerName("ys");
         orderDTO.setBuyerOpenid(BUYER_ID);
         orderDTO.setBuyerPhone("123456789012");
-        List<OrderDetail> orderDetailList=new ArrayList<>();
-        OrderDetail o1=new OrderDetail();
+        List<OrderDetail> orderDetailList = new ArrayList<>();
+        OrderDetail o1 = new OrderDetail();
         o1.setProductQuantity(2);
         o1.setProductId("123456");
-        OrderDetail o2=new OrderDetail();
+        OrderDetail o2 = new OrderDetail();
         o2.setProductId("66666");
         o2.setProductQuantity(3);
         orderDetailList.add(o1);
         orderDetailList.add(o2);
         orderDTO.setOrderDetailList(orderDetailList);
-        OrderDTO result=orderService.create(orderDTO);
+        OrderDTO result = orderService.create(orderDTO);
 
-        log.info("【订单创建】：result ={}",result);
+        log.info("【订单创建】：result ={}", result);
         Assert.assertNotNull(result);
     }
 
     @Test
     public void findOne() {
-        OrderDTO orderDTO=orderService.findOne(ORDER_ID);
-        log.info("【查找订单】 ：result={}",orderDTO);
+        OrderDTO orderDTO = orderService.findOne(ORDER_ID);
+        log.info("【查找订单】 ：result={}", orderDTO);
         Assert.assertNotNull(orderDTO);
 
     }
 
     @Test
     public void findAll() {
-        PageRequest pageRequest=new PageRequest(0,2);
-        Page<OrderDTO> orderDTOPage=orderService.findAll(BUYER_ID,pageRequest);
-        Assert.assertNotEquals(0,orderDTOPage.getTotalElements());
+        PageRequest pageRequest = new PageRequest(0, 2);
+        Page<OrderDTO> orderDTOPage = orderService.findAll(BUYER_ID, pageRequest);
+        Assert.assertNotEquals(0, orderDTOPage.getTotalElements());
 
     }
 
     @Test
     public void finshed() {
-        OrderDTO orderDTO=orderService.findOne(ORDER_ID);
-        OrderDTO result=orderService.finshed(orderDTO);
-        Assert.assertEquals(OrderStatusEnums.FINSHED.getCode(),result.getOrderStatus());
+        OrderDTO orderDTO = orderService.findOne(ORDER_ID);
+        OrderDTO result = orderService.finshed(orderDTO);
+        Assert.assertEquals(OrderStatusEnums.FINSHED.getCode(), result.getOrderStatus());
     }
 
     @Test
     public void cancel() {
-        OrderDTO orderDTO=orderService.findOne(ORDER_ID);
-        OrderDTO result=orderService.cancel(orderDTO);
-        Assert.assertEquals(OrderStatusEnums.CANCEL.getCode(),result.getOrderStatus());
+        OrderDTO orderDTO = orderService.findOne(ORDER_ID);
+        OrderDTO result = orderService.cancel(orderDTO);
+        Assert.assertEquals(OrderStatusEnums.CANCEL.getCode(), result.getOrderStatus());
 
     }
+
     @Test
-    public void paid(){
-        OrderDTO orderDTO=orderService.findOne(ORDER_ID);
-        OrderDTO result=orderService.paid(orderDTO);
-        Assert.assertEquals(PayStatusEnums.SUCCESS.getCode(),result.getPayStatus());
+    public void paid() {
+        OrderDTO orderDTO = orderService.findOne(ORDER_ID);
+        OrderDTO result = orderService.paid(orderDTO);
+        Assert.assertEquals(PayStatusEnums.SUCCESS.getCode(), result.getPayStatus());
+
+    }
+
+    @Test
+    public void findAll1() {
+        PageRequest pageRequest = new PageRequest(0, 2);
+        Page<OrderDTO> orderDTOPage = orderService.findAll(pageRequest);
+        Assert.assertNotEquals(0, orderDTOPage.getTotalElements());
 
     }
 }

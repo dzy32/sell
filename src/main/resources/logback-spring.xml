@@ -15,7 +15,7 @@
         </filter>
         <encoder>
             <pattern>
-               %d - %msg%n
+                %d - %msg%n
             </pattern>
         </encoder>
         <!-- 滚动策略-->
@@ -30,7 +30,7 @@
         </filter>
         <encoder>
             <pattern>
-                 %msg%n
+                %msg%n
             </pattern>
         </encoder>
         <!-- 滚动策略-->
@@ -41,8 +41,8 @@
     </appender>
 
     <root level="info">
-        <appender-ref ref="consolelog" />
-        <appender-ref ref="fileInfolog" />
-        <appender-ref ref="fileErrorlog" />
+        <appender-ref ref="consolelog"/>
+        <appender-ref ref="fileInfolog"/>
+        <appender-ref ref="fileErrorlog"/>
     </root>
 </configuration>

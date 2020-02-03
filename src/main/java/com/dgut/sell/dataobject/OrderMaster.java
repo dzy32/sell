@@ -19,17 +19,17 @@ import java.util.List;
 public class OrderMaster {
 
     @Id
-    private  String orderId;
+    private String orderId;
 
-    private  String buyerName;
-    private  String buyerPhone;
-    private  String buyerAddress;
-    private  String buyerOpenid;
-    private  BigDecimal orderAmount;
-//    订单状态 默认0新订单
-    private  Integer orderStatus= OrderStatusEnums.NEW.getCode();
-//    支付状态 0未支付
-    private  Integer payStatus= PayStatusEnums.WAIT.getCode();
+    private String buyerName;
+    private String buyerPhone;
+    private String buyerAddress;
+    private String buyerOpenid;
+    private BigDecimal orderAmount;
+    //    订单状态 默认0新订单
+    private Integer orderStatus = OrderStatusEnums.NEW.getCode();
+    //    支付状态 0未支付
+    private Integer payStatus = PayStatusEnums.WAIT.getCode();
 
     private Date createTime;
     private Date updateTime;
