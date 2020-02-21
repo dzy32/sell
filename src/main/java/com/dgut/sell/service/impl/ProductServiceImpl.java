@@ -9,6 +9,8 @@ import com.dgut.sell.enums.ResultEnums;
 import com.dgut.sell.service.ProductService;
 import com.sun.org.apache.bcel.internal.generic.NEW;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -27,6 +29,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Cacheable(cacheNames = "product",key = "123")
     public ProductInfo findOne(String productId) {
         return productDao.findOne(productId);
     }
@@ -74,6 +77,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @CachePut(cacheNames = "product",key = "123")
     public ProductInfo save(ProductInfo productInfo) {
         return productDao.save(productInfo);
 

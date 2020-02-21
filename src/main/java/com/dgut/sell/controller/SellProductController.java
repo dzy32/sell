@@ -12,6 +12,7 @@ import com.dgut.sell.service.ProductService;
 import com.dgut.sell.util.KeyUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -88,6 +89,7 @@ public class SellProductController {
         return new ModelAndView("product/index", map);
     }
     @PostMapping("/save")
+//    @CacheEvict(cacheNames = "product",key = "123")
     public ModelAndView save(@Valid ProductForm productForm, BindingResult bindingResult,Map<String, Object> map ){
 //       如果是修改，1.从数据库查找出商品，2.在复制属性， 3.save
         if(bindingResult.hasErrors()){

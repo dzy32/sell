@@ -113,7 +113,7 @@
 <script>
     var websocket = null;
     if ('WebSocket' in window) {
-        websocket = new WebSocket('ws://sell.natapp4.cc/sell/webSocket');
+        websocket = new WebSocket('ws://ysys.nat300.top/sell/webSocket');
     } else {
         alert('该浏览器不支持websocket!');
     }

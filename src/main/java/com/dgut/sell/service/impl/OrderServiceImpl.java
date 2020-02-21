@@ -12,9 +12,7 @@ import com.dgut.sell.dataobject.ProductInfo;
 import com.dgut.sell.enums.OrderStatusEnums;
 import com.dgut.sell.enums.PayStatusEnums;
 import com.dgut.sell.enums.ResultEnums;
-import com.dgut.sell.service.OrderService;
-import com.dgut.sell.service.PayService;
-import com.dgut.sell.service.ProductService;
+import com.dgut.sell.service.*;
 import com.dgut.sell.util.KeyUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -27,6 +25,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
+import javax.jws.WebService;
 import javax.smartcardio.CardTerminal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -46,6 +45,13 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private PayService payService;
+
+    @Autowired
+    private PushMessageService pushMessageService;
+
+    @Autowired
+    private WebSocket webSocket;
+
 
     @Override
     @Transactional
@@ -84,6 +90,9 @@ public class OrderServiceImpl implements OrderService {
                 new CartDTO(e.getProductId(), e.getProductQuantity())
         ).collect(Collectors.toList());
         productService.decreaseStock(cartDTOList);
+
+//        发送wensocket消息
+        webSocket.sendMessage("有新的订单 订单Id = ".concat(orderDTO.getOrderId()));
         return orderDTO;
     }
 
@@ -130,6 +139,8 @@ public class OrderServiceImpl implements OrderService {
             log.error("【订单完结】订单完结更新失败: orderId={},orderStatus={}", orderDTO.getOrderId(), orderDTO.getOrderStatus());
             throw new SellException(ResultEnums.ORDER_STATUS_ERROR);
         }
+//        发送模板消息
+        pushMessageService.orderStatus(orderDTO);
         return orderDTO;
 
     }

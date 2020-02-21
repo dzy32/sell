@@ -11,13 +11,13 @@ spring:
     username: root
     password: 123456
     #    url: jdbc:mysql://10.62.112.102/sell?characterEncoding=utf-8&useSSL=false
-    url: jdbc:mysql://192.168.56.101/sell?characterEncoding=utf-8&useSSL=false
+    url: jdbc:mysql://192.168.1.10/sell?characterEncoding=utf-8&useSSL=false
   jpa:
     show-sql: true
   jackson:
     default-property-inclusion: non_null
   redis:
-    host: 192.168.56.101
+    host: 192.168.1.10
     password:
 server:
   context-path: /sell
@@ -26,16 +26,18 @@ server:
 wechat:
     mpAppId: wxa74b92ed4f10f57d
     mpAppSecret: be0dbcc9f5e419cc686e58b127829703
+    templateId:
+      orderStatus: JT5PKpm_QnBnB9BJQ27JvFBrRqa-oBqRpGRb3SUsvEY
 #    mchId: 1409146202
 #    mchKey: c976503d34ca432c601361f969fd8d85
-    keyPath:
+#    keyPath:
 #  mpAppId: wxd898fcb01713c658
 #  mchId: 1483469312
 #  mchKey: C5245D70627C1F8E9964D494B0735025
 #  openAppId:
 #  openAppSecret:
 #  keyPath: H:\idea-ex2\sell\src\main\resources\h5.p12 #证书文件的完整路径，证书下载：课程源码doc目录下的h5.p12
-  notifyUrl: http://ysys.nat300.top/sell/pay/notify
+#  notifyUrl: http://ysys.nat300.top/sell/pay/notify
 projectUrl:
   wxMpAuthorize: http://ysys.nat300.top
   wxOpenAuthorize: http://ysys.nat300.top
